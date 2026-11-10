@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#102a2b">
+    <title>Jigsaw Picture</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <section class="screen welcome-screen" id="welcome-screen" aria-labelledby="welcome-title">
+        <div class="welcome-copy">
+          <p class="eyebrow">A little calm, one piece at a time</p>
+          <h1 id="welcome-title">JIGSAW<br>PICTURE</h1>
+          <p class="welcome-description">Choose a picture, then put it back together one piece at a time.</p>
+          <div class="menu-buttons" id="home-menu">
+            <button class="button button-primary" id="play-button" type="button">Play</button>
+            <button class="button button-secondary" id="continue-button" type="button" hidden>Continue</button>
+          </div>
+          <div class="picture-picker" id="picture-picker" hidden>
+            <button class="back-button picker-back" id="pictures-home-button" type="button">← <span>Back</span></button>
+            <h2 class="picker-heading">Choose your picture</h2>
+            <div class="picture-options">
+              <button class="picture-option" data-picture="lake" type="button">
+                <img src="assets/jigsaw-picture.png" alt="">
+                <span>Mountain lake</span>
+                <span class="picture-progress" data-progress-for="lake"></span>
+              </button>
+              <button class="picture-option" data-picture="leopard" type="button">
+                <img src="assets/leopard-picture.png" alt="">
+                <span>Leopard at sunset</span>
+                <span class="picture-progress" data-progress-for="leopard"></span>
+              </button>
+              <button class="picture-option" data-picture="eagle" type="button">
+                <img src="assets/eagle-picture.png" alt="">
+                <span>Bald eagle by the lake</span>
+                <span class="picture-progress" data-progress-for="eagle"></span>
+              </button>
+              <button class="picture-option" data-picture="flamingo" type="button">
+                <img src="assets/flamingo-picture.png" alt="">
+                <span>Flamingos at sunset</span>
+                <span class="picture-progress" data-progress-for="flamingo"></span>
+              </button>
+            </div>
+          </div>
+          <div class="level-picker-screen" id="level-picker-screen" hidden>
+            <button class="back-button picker-back" id="levels-pictures-button" type="button">← <span>Pictures</span></button>
+            <h2 class="picker-heading" id="selected-picture-name">Choose a level</h2>
+            <div class="level-picker" aria-label="Choose a puzzle level">
+              <button class="button button-primary level-button" data-count="5" type="button">
+                <span class="level-name">LEVEL ONE</span>
+                <span class="level-details"><span class="level-size">5 pieces</span><span class="lock-label" hidden>LOCKED</span></span>
+              </button>
+              <button class="button button-secondary level-button" data-count="10" type="button">
+                <span class="level-name">LEVEL TWO</span>
+                <span class="level-details"><span class="level-size">10 pieces</span><span class="lock-label" hidden>LOCKED</span></span>
+              </button>
+              <button class="button button-secondary level-button" data-count="20" type="button">
+                <span class="level-name">LEVEL THREE</span>
+                <span class="level-details"><span class="level-size">20 pieces</span><span class="lock-label" hidden>LOCKED</span></span>
+              </button>
+              <button class="button button-secondary level-button" data-count="40" type="button">
+                <span class="level-name">LEVEL FOUR</span>
+                <span class="level-details"><span class="level-size">40 pieces</span><span class="lock-label" hidden>LOCKED</span></span>
+              </button>
+            </div>
+            <button class="button button-secondary hard-level-toggle" id="hard-level-toggle" type="button" aria-expanded="false" aria-controls="hard-level-options">
+              <span>HARD LEVELS</span><span aria-hidden="true">⌄</span>
+            </button>
+            <div class="level-picker hard-level-options" id="hard-level-options" aria-label="Choose a hard level" hidden>
+              <button class="button button-secondary level-button" data-count="36" type="button">
+                <span class="level-name">HARD LEVEL ONE</span>
+                <span class="level-details"><span class="level-size">36 pieces</span><span class="lock-label" hidden>LOCKED</span></span>
+              </button>
+              <button class="button button-secondary level-button" data-count="64" type="button">
+                <span class="level-name">HARD LEVEL TWO</span>
+                <span class="level-details"><span class="level-size">64 pieces</span><span class="lock-label" hidden>LOCKED</span></span>
+              </button>
+              <button class="button button-secondary level-button" data-count="100" type="button">
+                <span class="level-name">HARD LEVEL THREE</span>
+                <span class="level-details"><span class="level-size">100 pieces</span><span class="lock-label" hidden>LOCKED</span></span>
+              </button>
+            </div>
+          </div>
+          <p class="level-label">SEVEN LEVELS <span aria-hidden="true">·</span> 5 TO 100 PIECES</p>
+        </div>
+        <div class="welcome-image" role="img" aria-label="Sunset over a mountain lake"></div>
+      </section>
+
+      <section class="screen game-screen" id="game-screen" aria-labelledby="game-title" hidden>
+        <header class="game-header">
+          <button class="back-button" id="home-button" type="button" aria-label="Back to home">← <span>Home</span></button>
+          <div class="game-heading">
+            <p class="eyebrow" id="game-level">LEVEL ONE</p>
+            <h1 id="game-title">Put it together</h1>
+          </div>
+          <button class="text-button" id="restart-button" type="button">Start over</button>
+        </header>
+
+        <div class="game-content">
+          <div class="puzzle-info">
+            <p>Move pieces anywhere on the board to rebuild the picture.</p>
+            <div class="puzzle-actions">
+              <button class="clue-button piano-button" id="piano-button" type="button" aria-pressed="true">♫ Piano: On</button>
+              <button class="clue-button" id="clue-button" type="button">✦ Clue</button>
+              <p class="moves-label">MOVES <strong id="moves-count">0</strong></p>
+            </div>
+          </div>
+          <div class="puzzle-layout">
+            <div class="puzzle-board" id="puzzle-board" role="group" aria-label="Jigsaw puzzle board"></div>
+            <aside class="preview-card">
+              <p class="preview-title">THE PICTURE</p>
+              <img id="preview-image" src="assets/jigsaw-picture.png" alt="Completed picture: a sunset over a mountain lake">
+              <p class="preview-note">Use this as your guide</p>
+            </aside>
+          </div>
+          <p class="game-message" id="game-message" aria-live="polite">Choose a piece, then choose where it belongs.</p>
+        </div>
+        <div class="win-overlay" id="win-overlay" hidden>
+          <div class="win-card">
+            <p class="eyebrow">BEAUTIFULLY DONE</p>
+            <h2>Picture complete!</h2>
+            <p id="win-message">You put the picture back together.</p>
+            <button class="button button-primary" id="next-level-button" type="button" hidden>Next level</button>
+            <button class="button button-primary" id="play-again-button" type="button">Play again</button>
+            <button class="text-button" id="win-home-button" type="button">Back to home</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
